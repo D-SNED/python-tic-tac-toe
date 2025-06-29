@@ -1,5 +1,5 @@
 class Board:
-    def print_board(self,board):
+    def print_board(self, board):
         for i in range(len(board)):
             if i < len(board) - 1:
                 print(" ", board[i][0], " | ", board[i][1], " | ", board[i][2], " ")
@@ -11,19 +11,28 @@ class Board:
 class TicTacToe:
     def __init__(self):
         self.board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
+        self.current_player = 'X'
 
-    def player_action(self):
 
-        player_choice = input("Enter a number (1-9) to mark a square: ")
+    def player_action(self, board):
 
-        pos = int(player_choice) - 1
-        row = pos // 3
-        col = pos % 3
+        for i in range(1,10):
+            player_choice = input("Enter a number (1-9) to mark a square: ")
 
-        self.board[row][col] = 'X'
+            pos = int(player_choice) - 1
+            row = pos // 3
+            col = pos % 3
 
-game = TicTacToe()
+
+            self.board[row][col] = self.current_player
+            if self.current_player == 'X':
+                self.current_player = 'O'
+            else:
+                self.current_player = 'X'
+
+
+            board.print_board(self.board)
+
 board = Board()
-
-game.player_action()
-board.print_board(game.board)
+game = TicTacToe()
+game.player_action(board)
