@@ -23,12 +23,14 @@ class TicTacToe:
             row = pos // 3
             col = pos % 3
 
-
-            self.board[row][col] = self.current_player
-            if self.current_player == 'X':
-                self.current_player = 'O'
+            if self.board[row][col] == ' ':
+                self.board[row][col] = self.current_player
+                if self.current_player == 'X':
+                    self.current_player = 'O'
+                else:
+                    self.current_player = 'X'
             else:
-                self.current_player = 'X'
+                input("That square is already taken! Press ENTER to go again")
 
 
             board.print_board(self.board)
