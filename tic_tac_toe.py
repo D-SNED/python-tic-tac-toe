@@ -13,6 +13,11 @@ class TicTacToe:
         self.board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
         self.current_player = 'X'
 
+    def check_winner(self):
+        for row in self.board:
+            if row[0] == row[1] == row[2] and row[0] != ' ':
+                return True
+
 
     def player_action(self, board):
 
@@ -31,6 +36,11 @@ class TicTacToe:
                     self.current_player = 'X'
             else:
                 input("That square is already taken! Press ENTER to go again")
+
+            if self.check_winner() and self.current_player == 'O':
+                print('X has won')
+            elif self.check_winner() and self.current_player == 'X':
+                print('O has won')
 
 
             board.print_board(self.board)
