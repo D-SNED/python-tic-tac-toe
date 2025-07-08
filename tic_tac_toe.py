@@ -14,11 +14,19 @@ class TicTacToe:
         self.current_player = 'X'
 
     def check_winner(self):
+        if self.board[0][0] == self.board[1][1] == self.board[2][2] and self.board[0][0] != ' ':
+            return True
+
+        if self.board[0][2] == self.board[1][1] == self.board[2][0] and self.board[0][2] != ' ':
+            return True
+
         for i in range(len(self.board)):
             if self.board[i][0] == self.board[i][1] == self.board[i][2] and self.board[i][0] != ' ':
                 return True
             elif self.board[0][i] == self.board[1][i] == self.board[2][i] and self.board[0][i] != ' ':
                 return True
+
+
 
         return False
 
@@ -39,6 +47,7 @@ class TicTacToe:
 
                 if self.check_winner():
                     print(f'{self.current_player} has won!')
+                    break
                 elif self.current_player == 'X':
                     self.current_player = 'O'
                 else:
