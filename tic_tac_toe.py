@@ -14,9 +14,15 @@ class TicTacToe:
         self.current_player = 'X'
 
     def check_winner(self):
-        for row in self.board:
-            if row[0] == row[1] == row[2] and row[0] != ' ':
+        for i in range(len(self.board)):
+            if self.board[i][0] == self.board[i][1] == self.board[i][2] and self.board[i][0] != ' ':
                 return True
+            elif self.board[0][i] == self.board[1][i] == self.board[2][i] and self.board[0][i] != ' ':
+                return True
+
+        return False
+
+
 
 
     def player_action(self, board):
@@ -30,18 +36,15 @@ class TicTacToe:
 
             if self.board[row][col] == ' ':
                 self.board[row][col] = self.current_player
-                if self.current_player == 'X':
+
+                if self.check_winner():
+                    print(f'{self.current_player} has won!')
+                elif self.current_player == 'X':
                     self.current_player = 'O'
                 else:
                     self.current_player = 'X'
             else:
                 input("That square is already taken! Press ENTER to go again")
-
-            if self.check_winner() and self.current_player == 'O':
-                print('X has won')
-            elif self.check_winner() and self.current_player == 'X':
-                print('O has won')
-
 
             board.print_board(self.board)
 
