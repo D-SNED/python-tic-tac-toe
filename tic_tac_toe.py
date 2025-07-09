@@ -30,7 +30,10 @@ class TicTacToe:
 
     def player_action(self, board):
 
+        board.print_board(self.board)
+
         for i in range(1,10):
+            print(f"Its {self.current_player}'s turn")
             player_choice = input("Enter a number (1-9) to mark a square: ")
 
             pos = int(player_choice) - 1
@@ -54,7 +57,8 @@ class TicTacToe:
 
             board.print_board(self.board)
 
-        print(f"It's a tie!")
+        if not self.check_winner():
+            print(f"It's a tie!")
 
 board = Board()
 game = TicTacToe()
