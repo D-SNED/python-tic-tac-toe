@@ -28,6 +28,12 @@ class TicTacToe:
 
         return False
 
+    def valid_input(self, val):
+        valid_guesses = [ "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+        return True if val in valid_guesses else False
+
+
     def player_action(self, board):
 
         board.print_board(self.board)
@@ -36,9 +42,15 @@ class TicTacToe:
             print(f"Its {self.current_player}'s turn")
             player_choice = input("Enter a number (1-9) to mark a square: ")
 
-            pos = int(player_choice) - 1
-            row = pos // 3
-            col = pos % 3
+
+            if self.valid_input(player_choice):
+                pos = int(player_choice) - 1
+                row = pos // 3
+                col = pos % 3
+            else:
+                print(f"That input is invalid. Please enter a number 1-9.")
+                continue
+
 
             if self.board[row][col] == ' ':
                 self.board[row][col] = self.current_player
